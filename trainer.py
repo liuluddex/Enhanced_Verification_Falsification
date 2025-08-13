@@ -67,29 +67,11 @@ class CustomCallback(BaseCallback):
             self.episode_rewards.append(self.current_episode_reward)
             self.episode_lengths.append(self.current_episode_length)
 
-            if self.min_cost >= 1e9:
-                Logger.info(
-                    f'num episodes {self.num_episodes}, average cost {self.avg_cost:.3f}, minimum cost INF, successful rate {self.successful_rate * 100:.3f}%, total cost {info["total_cost"]:.3f}')
-            else:
-                Logger.info(
-                    f'num episodes {self.num_episodes}, average cost {self.avg_cost:.3f}, minimum cost {self.min_cost:.3f}, successful rate {self.successful_rate * 100:.3f}%, total cost {info["total_cost"]:.3f}')
             self.current_episode_reward = 0
             self.current_episode_length = 0
             self.current_action_sequence = []
 
         return True
-
-    def get_avg_recall(self):
-        if len(self.episode_recalls) > 0:
-            return sum(self.episode_recalls) / len(self.episode_recalls)
-        return 0.0
-
-    def get_success_samples(self, indices=[1, 10, 50, 100]):
-        result = {}
-        for idx in indices:
-            if len(self.success_episodes) >= idx:
-                result[f"success_ep_{idx}"] = self.success_episodes[idx - 1]
-        return result
 
 
 class RescaledActionEnv(gym.Wrapper):
