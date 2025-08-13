@@ -14,4 +14,8 @@ This repository is for the paper "Enhanced Verification of Safety and Security f
 
 - DRL training: run Advanced_Ablation_Runner.py
 
-## Evaluation
+- CARLA/Scenic
+
+  - please download the repository from https://github.com/BerkeleyLearnVerify/Scenic
+
+  - choose carlaChallenge10.scenic, and run benchmark_runner.py
